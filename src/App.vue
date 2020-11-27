@@ -16,7 +16,7 @@ export default {
   components: {
     Header
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -26,7 +26,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: get-opacity($color-white, 0.90);
+  color: get-opacity($color-white, 0.9);
 }
 
 #nav {
