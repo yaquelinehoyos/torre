@@ -13,13 +13,19 @@
       <h2 class="header__search--title">Search</h2>
     </div>
     <div class="header__sections">
-      <div></div>
+      <div class="header__sections--sidebar-space"></div>
       <button class="header__sections--section">PEOPLE</button>
       <button class="header__sections--section">JOBS</button>
       <button class="header__sections--section">BLOG</button>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+    name: "Header"
+}
+</script>
 
 <style lang="scss" scoped>
 .bg-dark {
@@ -84,22 +90,17 @@
     align-content: center;
     box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.4);
     &--section {
-      height: 53.5px;
-      margin: 0px 8px;
-      border: none;
-      border-bottom: 2.5px solid $background-color;
-      background-color: inherit;
-      color: get-opacity($color-white, 0.9);
-      &:hover {
-        background-color: rgba(1, 1, 1, 0.1);
-      }
-      &:focus {
-        outline: none;
-        background-color: rgba(1, 1, 1, 0.1);
-        color: $primary-color;
-        border-bottom: 2.5px solid $primary-color;
-      }
+      @include header-button;
     }
   }
+}
+
+@media (max-width: 960px) {
+    .header__sections {
+        grid-template-columns: repeat(3, 1fr);
+        &--sidebar-space {
+            display: none;
+        }
+    }
 }
 </style>

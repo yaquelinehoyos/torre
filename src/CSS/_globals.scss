@@ -5,3 +5,54 @@ $color-white: #ffffff;
 @function get-opacity($color, $nivel) {
     @return rgba($color, $nivel);
 }
+
+@mixin input {
+    background-color: $background-color;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    line-height: 32px;
+    outline: none !important;
+    color: rgba($color-white, 0.65);
+}
+
+@mixin search-input {
+    border: none;
+}
+
+@mixin primary-button {
+    background-color: #383B40;
+    color: $primary-color;
+    margin: 0 0 0 8px;
+    min-width: 56px;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 36px;
+    padding: 0 16px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .2),
+    0 2px 2px rgba(0, 0, 0, .14),
+    0 3px 1px -2px rgba(0, 0, 0, .12);
+}
+
+@mixin header-button {
+    height: 53.5px;
+    margin: 0px 8px;
+    border: none;
+    border-bottom: 2.5px solid $background-color;
+    background-color: inherit;
+    color: get-opacity($color-white, 0.9);
+
+    &:hover {
+        background-color: rgba(1, 1, 1, 0.1);
+    }
+
+    &:focus {
+        outline: none;
+        background-color: rgba(1, 1, 1, 0.1);
+        color: $primary-color;
+        border-bottom: 2.5px solid $primary-color;
+    }
+}
