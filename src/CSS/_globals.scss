@@ -1,0 +1,7 @@
+$background-color: #27292D;
+$primary-color: #CDDC39;
+$color-white: #ffffff;
+
+@function get-opacity($color, $nivel) {
+    @return rgba($color, $nivel);
+}
