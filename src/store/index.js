@@ -4,8 +4,19 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    searchView: null
+  },
+  mutations: {
+    setSearchView(state, newSearchView) {
+      state.searchView = newSearchView
+    }
+  },
+  getters: {
+    searchView(state) {
+      return state.searchView
+    }
+  },
   actions: {},
   modules: {}
 });

@@ -14,16 +14,45 @@
     </div>
     <div class="header__sections">
       <div class="header__sections--sidebar-space"></div>
-      <button class="header__sections--section">PEOPLE</button>
-      <button class="header__sections--section">JOBS</button>
-      <button class="header__sections--section">BLOG</button>
+      <button id="people-button" class="header__sections--section" @click="changeView('people')">PEOPLE</button>
+      <button id="jobs-button" class="header__sections--section" @click="changeView('jobs')">JOBS</button>
+      <button id="blog-button" class="header__sections--section" @click="changeView('blog')">BLOG</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-    name: "Header"
+    name: "Header",
+    data() {
+        return { 
+            buttonsName: ["people", "jobs", "blog"]
+        }
+    },
+    computed: {
+        ...mapState(['searchView'])
+    },
+    watch: {
+        searchView() {
+            for(let i in this.buttonsName) {
+                if(this.buttonsName[i] == this.$store.getters["searchView"]) {
+                    document.getElementById(`${this.buttonsName[i]}-button`).classList.add("active-button");
+                } else {
+                    document.getElementById(`${this.buttonsName[i]}-button`).classList.remove("active-button");
+                }
+            }
+        }
+    },
+    mounted() {
+        this.$store.commit("setSearchView", 'blog')
+    },
+    methods: {
+        changeView(view) {
+            this.$store.commit("setSearchView", view)
+        }
+    }
 }
 </script>
 
@@ -93,6 +122,13 @@ export default {
       @include header-button;
     }
   }
+}
+
+.active-button {
+    outline: none;
+    background-color: rgba(1, 1, 1, 0.1);
+    color: $primary-color;
+    border-bottom: 2.5px solid $primary-color;
 }
 
 @media (max-width: 960px) {
