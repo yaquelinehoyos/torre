@@ -7,10 +7,10 @@
         ></b-button>
         <span class="header__nav--logo"><b>torre</b></span>
       </b-navbar-nav>
-       <b-navbar-nav class="ml-auto">
-         <b-nav-item href="#">Name</b-nav-item>
-         <b-avatar class="header__nav--avatar" src="https://placekitten.com/300/300"></b-avatar>
-       </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item href="#">{{ user.name }}</b-nav-item>
+        <b-avatar class="header__nav--avatar" :src="user.picture"></b-avatar>
+      </b-navbar-nav>
     </b-navbar>
     <hr />
     <div class="header__search">
@@ -50,7 +50,8 @@ export default {
   name: "Header",
   data() {
     return {
-      buttonsName: ["people", "jobs", "blog"]
+      buttonsName: ["people", "jobs", "blog"],
+      user: null
     };
   },
   computed: {
@@ -70,6 +71,9 @@ export default {
         }
       }
     }
+  },
+  created() {
+    this.user = this.$store.getters["user"].person;
   },
   mounted() {
     this.$store.commit("setSearchView", "blog");

@@ -7,11 +7,11 @@
     <div class="people__card">
       <h3 class="people__card--title">Ideas for your research</h3>
       <ul class="people__card--list">
-        <li>People open to <a href="#">internships in Colombia</a></li>
-        <li><a href="#">Mentors in Transcription</a></li>
-        <li><a href="#">People who have worked or work at Torre</a></li>
-        <li><a href="#">Your signalers</a></li>
-        <li><a href="#">People you've signaled</a></li>
+        <li>People open to <button>internships in Colombia</button></li>
+        <li><button>Mentors in Transcription</button></li>
+        <li><button>People who have worked or work at Torre</button></li>
+        <li><button>Your signalers</button></li>
+        <li><button>People you've signaled</button></li>
       </ul>
     </div>
   </div>
@@ -51,8 +51,8 @@ export default {
     &--list {
       font-size: 14px;
       color: get-opacity($color-white, 0.65);
-      a {
-        color: $primary-color;
+      button {
+        @include button-link;
       }
     }
   }

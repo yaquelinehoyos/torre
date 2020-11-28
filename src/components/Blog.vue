@@ -2,28 +2,70 @@
   <div class="blog">
     <div class="blog__input-content">
       <i class="fas fa-file-alt blog__input-content--icon"></i>
-      <input placeholder="Search blog" />
+      <input
+        v-model="postName"
+        placeholder="Search blog"
+        v-on:keyup.enter="search"
+      />
     </div>
     <div v-if="!thereIsSearch" class="blog__card">
       <h3 class="blog__card--title">Trending on torre</h3>
       <ul class="blog__card--list">
-        <li><a href="#">Building large-applications in Vue</a></li>
-        <li><a href="#">Best Frontend Frameworks of 2020 for Web Development</a></li>
-        <li><a href="#">Which Backend Framework Is Right for Your Project?</a></li>
-        <li><a href="#">FastAPI - The Good, the bad and the ugly</a></li>
-        <li><a href="#">When to use Sass mixins, extends and variables</a></li>
+        <li>
+          <button @click="goTo('Building large-applications in Vue')">
+            Building large-applications in Vue
+          </button>
+        </li>
+        <li>
+          <button>Best Frontend Frameworks of 2020 for Web Development</button>
+        </li>
+        <li>
+          <button>Which Backend Framework Is Right for Your Project?</button>
+        </li>
+        <li><button>FastAPI - The Good, the bad and the ugly</button></li>
+        <li><button>When to use Sass mixins, extends and variables</button></li>
       </ul>
+    </div>
+    <div v-if="thereIsSearch">
+      <template v-for="subject in subjects">
+        <Post v-bind:key="subject" />
+      </template>
     </div>
   </div>
 </template>
 
 <script>
+import Post from "./Post";
+
 export default {
   name: "Blog",
+  components: {
+    Post
+  },
   data() {
-      return {
-          thereIsSearch: false
+    return {
+      thereIsSearch: false,
+      subjects: [1],
+      postName: null
+    };
+  },
+  watch: {
+    postName() {
+      if (this.postName == null || this.postName == "") {
+        this.thereIsSearch = false;
       }
+    }
+  },
+  methods: {
+    goTo(subject) {
+      this.thereIsSearch = true;
+      this.postName = subject;
+      this.search();
+    },
+    search() {
+      this.thereIsSearch = true;
+      console.info(this.postName);
+    }
   }
 };
 </script>
@@ -56,8 +98,8 @@ export default {
     &--list {
       font-size: 14px;
       color: get-opacity($color-white, 0.65);
-      a {
-        color: $primary-color;
+      button {
+        @include button-link;
       }
     }
   }

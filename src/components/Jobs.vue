@@ -7,14 +7,14 @@
     <div class="jobs__card">
       <h3 class="jobs__card--title">Ideas for your research</h3>
       <ul class="jobs__card--list">
-        <li>Whats's <a href="#">best for you</a></li>
-        <li><a href="#">Part-time employment in Colombia</a></li>
+        <li>Whats's <button>best for you</button></li>
+        <li><button>Part-time employment in Colombia</button></li>
         <li>
-          Remote: <a href="#">internships</a> or <a href="#"></a>full-time
-          employment
+          Remote: <button>internships</button> or
+          <button>full-time employment</button>
         </li>
         <li>
-          Jobs <a href="#">in Design that match your desired compensation</a>
+          Jobs <button>in Design that match your desired compensation</button>
         </li>
         <li>Jobs posted by your favorite organization</li>
       </ul>
@@ -56,8 +56,8 @@ export default {
     &--list {
       font-size: 14px;
       color: get-opacity($color-white, 0.65);
-      a {
-        color: $primary-color;
+      button {
+        @include button-link;
       }
     }
   }

@@ -78,6 +78,16 @@ $color-white: #ffffff;
     }
 }
 
+@mixin button-link {
+    color: $primary-color;
+    border: none;
+    background-color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 @mixin card {
     background-color: $background-color;
     margin-top: 24px;

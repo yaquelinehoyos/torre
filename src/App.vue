@@ -15,6 +15,9 @@ export default {
   components: {
     Header
   }
+  // created() {
+  //   this.$store.dispatch("getUser", "yaqueline150")
+  // }
 };
 </script>
 
