@@ -7,6 +7,10 @@
         ></b-button>
         <span class="header__nav--logo"><b>torre</b></span>
       </b-navbar-nav>
+       <b-navbar-nav class="ml-auto">
+         <b-nav-item href="#">Name</b-nav-item>
+         <b-avatar class="header__nav--avatar" src="https://placekitten.com/300/300"></b-avatar>
+       </b-navbar-nav>
     </b-navbar>
     <hr />
     <div class="header__search">
@@ -14,46 +18,68 @@
     </div>
     <div class="header__sections">
       <div class="header__sections--sidebar-space"></div>
-      <button id="people-button" class="header__sections--section" @click="changeView('people')">PEOPLE</button>
-      <button id="jobs-button" class="header__sections--section" @click="changeView('jobs')">JOBS</button>
-      <button id="blog-button" class="header__sections--section" @click="changeView('blog')">BLOG</button>
+      <button
+        id="people-button"
+        class="header__sections--section"
+        @click="changeView('people')"
+      >
+        PEOPLE
+      </button>
+      <button
+        id="jobs-button"
+        class="header__sections--section"
+        @click="changeView('jobs')"
+      >
+        JOBS
+      </button>
+      <button
+        id="blog-button"
+        class="header__sections--section"
+        @click="changeView('blog')"
+      >
+        BLOG
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-    name: "Header",
-    data() {
-        return { 
-            buttonsName: ["people", "jobs", "blog"]
+  name: "Header",
+  data() {
+    return {
+      buttonsName: ["people", "jobs", "blog"]
+    };
+  },
+  computed: {
+    ...mapState(["searchView"])
+  },
+  watch: {
+    searchView() {
+      for (let i in this.buttonsName) {
+        if (this.buttonsName[i] == this.$store.getters["searchView"]) {
+          document
+            .getElementById(`${this.buttonsName[i]}-button`)
+            .classList.add("active-button");
+        } else {
+          document
+            .getElementById(`${this.buttonsName[i]}-button`)
+            .classList.remove("active-button");
         }
-    },
-    computed: {
-        ...mapState(['searchView'])
-    },
-    watch: {
-        searchView() {
-            for(let i in this.buttonsName) {
-                if(this.buttonsName[i] == this.$store.getters["searchView"]) {
-                    document.getElementById(`${this.buttonsName[i]}-button`).classList.add("active-button");
-                } else {
-                    document.getElementById(`${this.buttonsName[i]}-button`).classList.remove("active-button");
-                }
-            }
-        }
-    },
-    mounted() {
-        this.$store.commit("setSearchView", 'blog')
-    },
-    methods: {
-        changeView(view) {
-            this.$store.commit("setSearchView", view)
-        }
+      }
     }
-}
+  },
+  mounted() {
+    this.$store.commit("setSearchView", "blog");
+  },
+  methods: {
+    changeView(view) {
+      this.$store.commit("setSearchView", view);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -89,6 +115,13 @@ export default {
     }
     &--logo {
       font-size: 25px;
+      letter-spacing: 0.09em;
+    }
+    &--avatar {
+      margin: 0px 15px;
+    }
+    a {
+      color: get-opacity($color-white, 0.65) !important;
     }
   }
   hr {
@@ -125,18 +158,18 @@ export default {
 }
 
 .active-button {
-    outline: none;
-    background-color: rgba(1, 1, 1, 0.1);
-    color: $primary-color;
-    border-bottom: 2.5px solid $primary-color;
+  outline: none;
+  background-color: rgba(1, 1, 1, 0.1);
+  color: $primary-color;
+  border-bottom: 2.5px solid $primary-color;
 }
 
 @media (max-width: 960px) {
-    .header__sections {
-        grid-template-columns: repeat(3, 1fr);
-        &--sidebar-space {
-            display: none;
-        }
+  .header__sections {
+    grid-template-columns: repeat(3, 1fr);
+    &--sidebar-space {
+      display: none;
     }
+  }
 }
 </style>

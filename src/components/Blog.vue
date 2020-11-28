@@ -1,17 +1,17 @@
 <template>
-  <div class="people">
-    <div class="people__input-content">
-      <i class="fas fa-user people__input-content--icon"></i>
-      <input placeholder="Search people" />
+  <div class="blog">
+    <div class="blog__input-content">
+      <i class="fas fa-file-alt blog__input-content--icon"></i>
+      <input placeholder="Search blog" />
     </div>
-    <div class="people__card">
-      <h3 class="people__card--title">Ideas for your research</h3>
-      <ul class="people__card--list">
-        <li>People open to <a href="#">internships in Colombia</a></li>
-        <li><a href="#">Mentors in Transcription</a></li>
-        <li><a href="#">People who have worked or work at Torre</a></li>
-        <li><a href="#">Your signalers</a></li>
-        <li><a href="#">People you've signaled</a></li>
+    <div v-if="!thereIsSearch" class="blog__card">
+      <h3 class="blog__card--title">Trending on torre</h3>
+      <ul class="blog__card--list">
+        <li><a href="#">Building large-applications in Vue</a></li>
+        <li><a href="#">Best Frontend Frameworks of 2020 for Web Development</a></li>
+        <li><a href="#">Which Backend Framework Is Right for Your Project?</a></li>
+        <li><a href="#">FastAPI - The Good, the bad and the ugly</a></li>
+        <li><a href="#">When to use Sass mixins, extends and variables</a></li>
       </ul>
     </div>
   </div>
@@ -19,12 +19,17 @@
 
 <script>
 export default {
-  name: "People"
+  name: "Blog",
+  data() {
+      return {
+          thereIsSearch: false
+      }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.people {
+.blog {
   height: calc(100vh - 220px);
   display: flex;
   align-items: center;
@@ -59,10 +64,10 @@ export default {
 }
 
 @media (max-width: 960px) {
-  .people__input-content {
+  .blog__input-content {
     width: 90%;
   }
-  .people__card {
+  .blog__card {
     width: 90%;
   }
 }

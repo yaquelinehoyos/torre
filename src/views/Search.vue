@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <Sidebar class="home--sidebar"/>
-    <BlogSection />
+    <Sidebar class="home--sidebar" />
+    <Sections />
   </div>
 </template>
 
 <script>
 import Sidebar from "@/components/Layout/Sidebar";
-import BlogSection from "@/components/BlogSection";
+import Sections from "@/components/Sections";
 
 export default {
   name: "Home",
   components: {
-    BlogSection,
+    Sections,
     Sidebar
   }
 };
@@ -28,7 +28,7 @@ export default {
 
 @media (max-width: 960px) {
   .home {
-  grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     &--sidebar {
       display: none;
     }
