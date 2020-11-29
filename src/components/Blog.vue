@@ -20,7 +20,7 @@
     </div>
     <div class="blog__card__post" v-if="thereIsSearch">
       <div class="blog__card__post--subtitle">
-        Showing results 1-20 of around 50
+        Showing results...
       </div>
       <template v-for="subject in subjects">
         <Post v-bind:key="subject.id" :post="subject" />

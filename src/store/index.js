@@ -10,7 +10,8 @@ export default new Vuex.Store({
     user: null,
     filters: null,
     trending: null,
-    author: null
+    author: null,
+    post: null
   },
   mutations: {
     setSearchView(state, newSearchView) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setAuthor(state, newAuthor) {
       state.author = newAuthor;
+    },
+    setPost(state, newPost) {
+      state.post = newPost;
     }
   },
   getters: {
@@ -44,6 +48,9 @@ export default new Vuex.Store({
     },
     author(state) {
       return state.author
+    },
+    post(state) {
+      return state.post
     }
   },
   actions: {
@@ -112,6 +119,23 @@ export default new Vuex.Store({
         console.info(err);
       }
       commit("setTrending", response.data.message);
+      return response;
+    },
+
+    async getPostById({
+      commit
+    }, id) {
+      let response;
+      try {
+        response = await axios.get(process.env.VUE_APP_BACK_ROUTE + `/content/post-by-id/${id}`, {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (err) {
+        console.info(err);
+      }
+      commit("setPost", response.data.message);
       return response;
     }
   },
