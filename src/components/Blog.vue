@@ -11,19 +11,11 @@
     <div v-if="!thereIsSearch" class="blog__card">
       <h3 class="blog__card--title">Trending on torre</h3>
       <ul class="blog__card--list">
-        <li>
-          <button @click="goTo('Building large-applications in Vue')">
-            Building large-applications in Vue
+        <li v-for="post in trending" v-bind:key="post.id">
+          <button @click="goTo(post)">
+            {{ post.name }}
           </button>
         </li>
-        <li>
-          <button>Best Frontend Frameworks of 2020 for Web Development</button>
-        </li>
-        <li>
-          <button>Which Backend Framework Is Right for Your Project?</button>
-        </li>
-        <li><button>FastAPI - The Good, the bad and the ugly</button></li>
-        <li><button>When to use Sass mixins, extends and variables</button></li>
       </ul>
     </div>
     <div class="blog__card__post" v-if="thereIsSearch">
@@ -31,7 +23,7 @@
         Showing results 1-20 of around 50
       </div>
       <template v-for="subject in subjects">
-        <Post v-bind:key="subject" />
+        <Post v-bind:key="subject.id" :post="subject" />
       </template>
     </div>
   </div>
@@ -48,8 +40,9 @@ export default {
   data() {
     return {
       thereIsSearch: false,
-      subjects: [1, 2, 3, 4, 5, 6, 7],
-      postName: null
+      subjects: [],
+      postName: null,
+      trending: null
     };
   },
   watch: {
@@ -58,8 +51,12 @@ export default {
         this.thereIsSearch = false;
         document.getElementById("blog").style.height = "calc(100vh - 220px)";
         document.getElementById("search-input").style.width = "50%";
+        this.subjects = []
       }
     }
+  },
+  beforeMount() {
+    this.trending = this.$store.getters["trending"]
   },
   mounted() {
     document.getElementById("blog").style.height = "calc(100vh - 220px)";
@@ -67,13 +64,13 @@ export default {
   },
   methods: {
     goTo(subject) {
+      this.subjects.push(subject);
       this.thereIsSearch = true;
-      this.postName = subject;
+      this.postName = subject.name;
       this.search();
     },
     search() {
       this.thereIsSearch = true;
-      console.info(this.postName);
       document.getElementById("blog").style.height = "auto";
       document.getElementById("search-input").style.width = "80%";
     }
@@ -113,7 +110,7 @@ export default {
       }
     }
     &__post {
-      width: 50%;
+      width: 60%;
       &--subtitle {
         color: hsla(0, 0%, 100%, 0.65);
         margin: 40px 0px 18px 0px;

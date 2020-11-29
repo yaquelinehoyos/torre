@@ -27,6 +27,7 @@ export default {
   },
   async created() {
     this.$store.dispatch("getFilters")
+    this.$store.dispatch("getTrending")
     await this.$store.dispatch("getUser", "yaqueline150")
     this.thereIsData = true
   }

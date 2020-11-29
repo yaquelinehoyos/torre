@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     searchView: null,
     user: null,
-    filters: null
+    filters: null,
+    trending: null,
+    author: null
   },
   mutations: {
     setSearchView(state, newSearchView) {
@@ -19,6 +21,12 @@ export default new Vuex.Store({
     },
     setFilters(state, newFilters) {
       state.filters = newFilters;
+    },
+    setTrending(state, newTrending) {
+      state.trending = newTrending;
+    },
+    setAuthor(state, newAuthor) {
+      state.author = newAuthor;
     }
   },
   getters: {
@@ -30,6 +38,12 @@ export default new Vuex.Store({
     },
     filters(state) {
       return state.filters;
+    },
+    trending(state) {
+      return state.trending
+    },
+    author(state) {
+      return state.author
     }
   },
   actions: {
@@ -50,6 +64,23 @@ export default new Vuex.Store({
       return response;
     },
 
+    async getAuthor({
+      commit
+    }, username) {
+      let response;
+      try {
+        response = await axios.get(process.env.VUE_APP_BACK_ROUTE + `/bio/${username}`, {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (err) {
+        console.info(err);
+      }
+      commit("setAuthor", response.data.message);
+      return response;
+    },
+
     async getFilters({
       commit
     }) {
@@ -64,6 +95,23 @@ export default new Vuex.Store({
         console.info(err);
       }
       commit("setFilters", response.data.message);
+      return response;
+    },
+
+    async getTrending({
+      commit
+    }) {
+      let response;
+      try {
+        response = await axios.get(process.env.VUE_APP_BACK_ROUTE + `/content/trending`, {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (err) {
+        console.info(err);
+      }
+      commit("setTrending", response.data.message);
       return response;
     }
   },
