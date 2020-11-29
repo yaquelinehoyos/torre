@@ -97,6 +97,7 @@ export default {
 }
 
 .header {
+  background-color: $background-color !important;
   &__nav {
     height: 56px;
     &--option {
@@ -134,6 +135,7 @@ export default {
   }
   &__search {
     height: 56px;
+    background-color: $background-color !important;
     color: get-opacity($color-white, 0.9) !important;
     margin-top: 8px;
     padding: 0px 8px;
@@ -150,6 +152,7 @@ export default {
   }
   &__sections {
     height: 56px;
+    background-color: $background-color;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;

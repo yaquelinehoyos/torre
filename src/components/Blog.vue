@@ -1,10 +1,10 @@
 <template>
-  <div class="blog">
-    <div class="blog__input-content">
+  <div class="blog" id="blog">
+    <div class="blog__input-content" id="search-input">
       <i class="fas fa-file-alt blog__input-content--icon"></i>
       <input
         v-model="postName"
-        placeholder="Search blog"
+        placeholder="Search post"
         v-on:keyup.enter="search"
       />
     </div>
@@ -26,7 +26,10 @@
         <li><button>When to use Sass mixins, extends and variables</button></li>
       </ul>
     </div>
-    <div v-if="thereIsSearch">
+    <div class="blog__card__post" v-if="thereIsSearch">
+      <div class="blog__card__post--subtitle">
+        Showing results 1-20 of around 50
+      </div>
       <template v-for="subject in subjects">
         <Post v-bind:key="subject" />
       </template>
@@ -45,7 +48,7 @@ export default {
   data() {
     return {
       thereIsSearch: false,
-      subjects: [1],
+      subjects: [1, 2, 3, 4, 5, 6, 7],
       postName: null
     };
   },
@@ -53,8 +56,14 @@ export default {
     postName() {
       if (this.postName == null || this.postName == "") {
         this.thereIsSearch = false;
+        document.getElementById("blog").style.height = "calc(100vh - 220px)";
+        document.getElementById("search-input").style.width = "50%";
       }
     }
+  },
+  mounted() {
+    document.getElementById("blog").style.height = "calc(100vh - 220px)";
+    document.getElementById("search-input").style.width = "50%";
   },
   methods: {
     goTo(subject) {
@@ -65,6 +74,8 @@ export default {
     search() {
       this.thereIsSearch = true;
       console.info(this.postName);
+      document.getElementById("blog").style.height = "auto";
+      document.getElementById("search-input").style.width = "80%";
     }
   }
 };
@@ -72,14 +83,13 @@ export default {
 
 <style lang="scss" scoped>
 .blog {
-  height: calc(100vh - 220px);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   &__input-content {
     &--icon {
-      font-size: 18px;
+      font-size: 16px;
       margin: 0 auto;
       align-self: center;
       color: get-opacity($color-white, 0.65);
@@ -102,6 +112,13 @@ export default {
         @include button-link;
       }
     }
+    &__post {
+      width: 50%;
+      &--subtitle {
+        color: hsla(0, 0%, 100%, 0.65);
+        margin: 40px 0px 18px 0px;
+      }
+    }
   }
 }
 
@@ -111,6 +128,9 @@ export default {
   }
   .blog__card {
     width: 90%;
+    &__post {
+      width: 90%;
+    }
   }
 }
 </style>
