@@ -1,6 +1,7 @@
 $background-color: #27292D;
 $primary-color: #CDDC39;
 $color-white: #ffffff;
+$background-button: #383B40;
 
 @function get-opacity($color, $nivel) {
     @return rgba($color, $nivel);
@@ -48,9 +49,9 @@ $color-white: #ffffff;
     }
 }
 
-@mixin primary-button {
-    background-color: #383B40;
-    color: $primary-color;
+@mixin primary-button($background, $color) {
+    background-color: $background;
+    color: $color;
     margin: 0 0 0 8px;
     min-width: 56px;
     border: none;
@@ -82,10 +83,26 @@ $color-white: #ffffff;
     color: $primary-color;
     border: none;
     background-color: inherit;
-
+    outline: none !important;
+    text-align: left;
     &:hover {
         text-decoration: underline;
     }
+}
+
+@mixin float-button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 10px;
+    background-color: $primary-color;
+    color: $background-color;
+    font-size: 25px;
+    border-radius: 50px;
+    text-align: center;
+    outline: none !important;
+    border: none;
 }
 
 @mixin card {
@@ -95,4 +112,17 @@ $color-white: #ffffff;
     border-radius: 2px;
     padding: 16px;
     color: get-opacity($color-white, 0.9);
+}
+
+@mixin topic {
+    margin: 12px 0;
+    background: none;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    color: hsla(0, 0%, 100%, 0.9);
+    display: inline-block;
+    height: 32px;
+    line-height: 100%;
+    margin-right: 6px;
+    padding: 8px 16px;
 }

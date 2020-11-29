@@ -61,5 +61,22 @@ export default {
 .blog-section {
   background-color: black;
   padding: 24px 16px;
+  height: calc(100vh - 176px);
+  overflow-y: scroll;
+}
+
+.blog-section::-webkit-scrollbar-track {
+  background-color: #e9ecef;
+}
+
+.blog-section::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.blog-section::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

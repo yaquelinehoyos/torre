@@ -37,7 +37,7 @@ export default {
   flex-direction: column;
   &__input-content {
     &--icon {
-      font-size: 18px;
+      font-size: 16px;
       margin: 0 auto;
       align-self: center;
       color: get-opacity($color-white, 0.65);

@@ -5,74 +5,84 @@
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Frontend</h3>
         <div class="sidebar__list__subject--item">
-          <a href="#">Vue</a>
+          <button class="sidebar__list__subject--item--link">Vue</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">React</a>
+          <button class="sidebar__list__subject--item--link">React</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Angular</a>
+          <button class="sidebar__list__subject--item--link">Angular</button>
         </div>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Backend</h3>
         <div class="sidebar__list__subject--item">
-          <a href="#">Laravel</a>
+          <button class="sidebar__list__subject--item--link">Laravel</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Django</a>
+          <button class="sidebar__list__subject--item--link">Django</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Fastapi</a>
+          <button class="sidebar__list__subject--item--link">Fastapi</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Ruby on Rails</a>
+          <button class="sidebar__list__subject--item--link">
+            Ruby on Rails
+          </button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Flask</a>
+          <button class="sidebar__list__subject--item--link">Flask</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Node js</a>
+          <button class="sidebar__list__subject--item--link">Node js</button>
         </div>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Computer science</h3>
         <div class="sidebar__list__subject--item">
-          <a href="#">History</a>
+          <button class="sidebar__list__subject--item--link">History</button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Theoretical computer science</a>
+          <button class="sidebar__list__subject--item--link">
+            Theoretical computer science
+          </button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Computer systems and computational processes</a>
+          <button class="sidebar__list__subject--item--link">
+            Computer systems and computational processes
+          </button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Artificial intelligence</a>
+          <button class="sidebar__list__subject--item--link">
+            Artificial intelligence
+          </button>
         </div>
         <div class="sidebar__list__subject--item">
-          <a href="#">Applied computer science</a>
+          <button class="sidebar__list__subject--item--link">
+            Applied computer science
+          </button>
         </div>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Language(s)</h3>
         <div class="sidebar__list__subject--item">
-          <div class="sidebar__list__subject--item--language">
+          <div class="sidebar__list__subject--item--input">
             <input placeholder="Language(s)" />
           </div>
-          <button>GO</button>
+          <button class="sidebar__list__subject--item--button">GO</button>
         </div>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Author</h3>
         <div class="sidebar__list__subject--item">
-          <div class="sidebar__list__subject--item--language">
+          <div class="sidebar__list__subject--item--input">
             <input placeholder="Author" />
           </div>
-          <button>GO</button>
+          <button class="sidebar__list__subject--item--button">GO</button>
         </div>
       </div>
     </div>
@@ -87,10 +97,10 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
+  height: calc(100vh - 176px);
   padding-top: 24px;
   text-align: left;
   overflow-y: scroll;
-  height: calc(100vh - 168px);
   &--title {
     background: hsla(0, 0%, 100%, 0.06);
     margin: 0;
@@ -117,10 +127,10 @@ export default {
         padding-bottom: 8px;
         display: flex;
         align-items: center;
-        a {
-          color: $primary-color;
+        &--link {
+          @include button-link;
         }
-        &--language {
+        &--input {
           background-color: $background-color;
           padding: 8px 16px 4px;
           border: 1px solid rgba($color-white, 0.65);
@@ -133,8 +143,8 @@ export default {
             border: 1px solid rgba($color-white, 0.9);
           }
         }
-        button {
-          @include primary-button;
+        &--button {
+          @include primary-button($background-button, $primary-color);
         }
       }
     }
