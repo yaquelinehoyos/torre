@@ -6,7 +6,7 @@
         <h3 class="sidebar__list__subject--subtitle">Frontend</h3>
         <template v-for="filter in filters.frontend">
           <div v-bind:key="filter" class="sidebar__list__subject--item">
-            <button class="sidebar__list__subject--item--link">{{ filter }}</button>
+            <button class="sidebar__list__subject--item--link" @click="filterBy(filter)">{{ filter }}</button>
           </div>
         </template>
       </div>
@@ -15,7 +15,7 @@
         <h3 class="sidebar__list__subject--subtitle">Backend</h3>
         <template v-for="filter in filters.backend">
           <div v-bind:key="filter" class="sidebar__list__subject--item">
-            <button class="sidebar__list__subject--item--link">{{ filter }}</button>
+            <button class="sidebar__list__subject--item--link" @click="filterBy(filter)">{{ filter }}</button>
           </div>
         </template>
       </div>
@@ -62,6 +62,11 @@ export default {
   },
   beforeMount() {
     this.filters = this.$store.getters["filters"]
+  },
+  methods: {
+    filterBy(filter) {
+      return this.$emit("input", filter);
+    }
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Sidebar class="home--sidebar" />
-    <Sections />
+    <Sidebar class="home--sidebar" v-model="filter"/>
+    <Sections :key="sectionKey" :filter="filter"/>
   </div>
 </template>
 
@@ -14,6 +14,17 @@ export default {
   components: {
     Sections,
     Sidebar
+  },
+  data() {
+    return {
+      filter: null,
+      sectionKey: 0
+    }
+  },
+  watch: {
+    filter() {
+      return this.sectionKey += 1
+    }
   }
 };
 </script>

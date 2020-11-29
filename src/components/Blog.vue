@@ -34,6 +34,9 @@ import Post from "./Post";
 
 export default {
   name: "Blog",
+  props: {
+    filter: String
+  },
   components: {
     Post
   },
@@ -53,6 +56,16 @@ export default {
         document.getElementById("search-input").style.width = "50%";
         this.subjects = []
       }
+    },
+    filter: {
+      immediate: true,
+      deep: true,
+      handler() {
+        if(this.filter != null) {
+          this.postName = this.filter
+          this.search()
+        }
+      }
     }
   },
   beforeMount() {
@@ -69,7 +82,12 @@ export default {
       this.postName = subject.name;
       this.search();
     },
-    search() {
+    async search() {
+      this.thereIsSearch = false;
+      await this.$store.dispatch("filterPosts", this.postName);
+      for(let i in this.$store.getters["posts"]) {
+        this.subjects.push(this.$store.getters["posts"][i]);
+      }
       this.thereIsSearch = true;
       document.getElementById("blog").style.height = "auto";
       document.getElementById("search-input").style.width = "80%";

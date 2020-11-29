@@ -11,7 +11,8 @@ export default new Vuex.Store({
     filters: null,
     trending: null,
     author: null,
-    post: null
+    post: null,
+    posts: null
   },
   mutations: {
     setSearchView(state, newSearchView) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     setPost(state, newPost) {
       state.post = newPost;
+    },
+    setPosts(state, newPosts) {
+      state.posts = newPosts;
     }
   },
   getters: {
@@ -51,6 +55,9 @@ export default new Vuex.Store({
     },
     post(state) {
       return state.post
+    },
+    posts(state) {
+      return state.posts
     }
   },
   actions: {
@@ -136,6 +143,23 @@ export default new Vuex.Store({
         console.info(err);
       }
       commit("setPost", response.data.message);
+      return response;
+    },
+
+    async filterPosts({
+      commit
+    }, filter) {
+      let response;
+      try {
+        response = await axios.get(process.env.VUE_APP_BACK_ROUTE + `/content/posts/${filter}`, {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (err) {
+        console.info(err);
+      }
+      commit("setPosts", response.data.message);
       return response;
     }
   },
