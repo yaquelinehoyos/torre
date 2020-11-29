@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <Header />
-    <button title="Generate Excel" class="float">
-      <i class="fas fa-comment-alt"></i>
-    </button>
-    <router-view />
+    <div class="spinner" v-if="!thereIsData">
+      <img src="./assets/spinner.gif" width="100" height="100"/>
+    </div>
+    <div v-else>
+      <Header />
+      <button title="Generate Excel" class="float">
+        <i class="fas fa-comment-alt"></i>
+      </button>
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -14,10 +19,16 @@ import Header from "./components/Layout/Header";
 export default {
   components: {
     Header
+  },
+  data() {
+    return {
+      thereIsData: false
+    }
+  },
+  async created() {
+    await this.$store.dispatch("getUser", "yaqueline150")
+    this.thereIsData = true
   }
-  // created() {
-  //   this.$store.dispatch("getUser", "yaqueline150")
-  // }
 };
 </script>
 
@@ -28,6 +39,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: get-opacity($color-white, 0.9);
+}
+
+.spinner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .float {
