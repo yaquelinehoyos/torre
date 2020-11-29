@@ -72,7 +72,7 @@ export default {
       }
     }
   },
-  created() {
+  beforeMount() {
     this.user = this.$store.getters["user"].person;
   },
   mounted() {
