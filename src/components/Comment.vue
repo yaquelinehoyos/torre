@@ -3,7 +3,7 @@
     <div class="comment__user">
       <b-avatar src="https://placekitten.com/300/300" size="3rem"></b-avatar>
       <div class="comment__user__name-date">
-        <span class="comment__user__name-date--name">User name</span><br />
+        <span class="comment__user__name-date--name">Username</span><br />
         <div class="comment__user__name-date--date">
           <i class="fas fa-calendar-alt"></i> 11/27/2020
         </div>

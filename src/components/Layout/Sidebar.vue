@@ -4,66 +4,29 @@
     <div class="sidebar__list">
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Frontend</h3>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Vue</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">React</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Angular</button>
-        </div>
+        <template v-for="filter in filters.frontend">
+          <div v-bind:key="filter" class="sidebar__list__subject--item">
+            <button class="sidebar__list__subject--item--link">{{ filter }}</button>
+          </div>
+        </template>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Backend</h3>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Laravel</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Django</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Fastapi</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">
-            Ruby on Rails
-          </button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Flask</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">Node js</button>
-        </div>
+        <template v-for="filter in filters.backend">
+          <div v-bind:key="filter" class="sidebar__list__subject--item">
+            <button class="sidebar__list__subject--item--link">{{ filter }}</button>
+          </div>
+        </template>
       </div>
 
       <div class="sidebar__list__subject">
         <h3 class="sidebar__list__subject--subtitle">Computer science</h3>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">History</button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">
-            Theoretical computer science
-          </button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">
-            Computer systems and computational processes
-          </button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">
-            Artificial intelligence
-          </button>
-        </div>
-        <div class="sidebar__list__subject--item">
-          <button class="sidebar__list__subject--item--link">
-            Applied computer science
-          </button>
-        </div>
+        <template v-for="filter in filters.computer_science">
+          <div v-bind:key="filter" class="sidebar__list__subject--item">
+            <button class="sidebar__list__subject--item--link">{{ filter }}</button>
+          </div>
+        </template>
       </div>
 
       <div class="sidebar__list__subject">
@@ -91,7 +54,15 @@
 
 <script>
 export default {
-  name: "Sidebar"
+  name: "Sidebar",
+  data() {
+    return {
+      filters: null
+    }
+  },
+  beforeMount() {
+    this.filters = this.$store.getters["filters"]
+  }
 };
 </script>
 
