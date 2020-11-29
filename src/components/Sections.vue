@@ -2,7 +2,7 @@
   <div class="blog-section">
     <People v-if="showPeople" />
     <Jobs v-if="showJobs" />
-    <Blog v-if="showBlog" />
+    <Blog :key="blogKey" :filter="filter" v-if="showBlog" />
   </div>
 </template>
 
@@ -14,6 +14,9 @@ import Blog from "./Blog";
 
 export default {
   name: "BlogSection",
+  props: {
+    filter: String
+  },
   components: {
     People,
     Jobs,
@@ -23,7 +26,8 @@ export default {
     return {
       showPeople: false,
       showJobs: false,
-      showBlog: false
+      showBlog: false,
+      blogKey: 0
     };
   },
   computed: {
