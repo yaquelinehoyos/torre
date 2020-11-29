@@ -81,6 +81,9 @@ export default {
   methods: {
     changeView(view) {
       this.$store.commit("setSearchView", view);
+      if (this.$route.path != "/") {
+        this.$router.push({ name: "Search" });
+      }
     }
   }
 };

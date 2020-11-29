@@ -1,5 +1,5 @@
 <template>
-  <div class="post">
+  <div class="post" @click="goToPost">
     <b-avatar src="https://placekitten.com/300/300" size="3.5rem"></b-avatar>
     <div class="post__content">
       <div class="post__content__title">
@@ -82,16 +82,7 @@ export default {
       }
     }
     &--topic {
-      margin: 12px 0;
-      background: none;
-      border: 1px solid #c2c2c2;
-      border-radius: 2px;
-      color: hsla(0, 0%, 100%, 0.9);
-      display: inline-block;
-      height: 32px;
-      line-height: 100%;
-      margin-right: 6px;
-      padding: 8px 16px;
+      @include topic;
     }
     &__options {
       margin: 16px 0px;
