@@ -62,6 +62,7 @@ export default {
       deep: true,
       handler() {
         if(this.filter != null) {
+          this.subjects = []
           this.postName = this.filter
           this.search()
         }
@@ -77,8 +78,6 @@ export default {
   },
   methods: {
     goTo(subject) {
-      this.subjects.push(subject);
-      this.thereIsSearch = true;
       this.postName = subject.name;
       this.search();
     },
